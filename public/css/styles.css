@@ -1,6 +1,280 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* Root and base styles */
+:root {
+  --primary-bg: #fff;
+  --primary-text: #222;
+  --accent: #00bcd4;
+  --nav-bg: #23232b;
+  --nav-link: #fff;
+  --nav-link-active: #00bcd4;
+  --section-bg: #f5f5f5;
+  --upgrade-bg: #00bcd4;
+  --footer-bg: #fff;
+  --footer-text: #222;
+  --btn-bg: #00bcd4;
+  --btn-text: #fff;
+  --border-radius: 6px;
+  --font-main: 'Montserrat', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--primary-bg);
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem 0.5rem 1rem;
+  background: var(--primary-bg);
+}
+.site-name a {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  text-decoration: none;
+}
+.account-link a {
+  color: var(--primary-text);
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.main-nav {
+  background: var(--nav-bg);
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.main-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav li {
+  margin: 0 0.5rem;
+}
+.main-nav a {
+  color: var(--nav-link);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: background 0.2s, color 0.2s;
+}
+.main-nav a:hover,
+.main-nav a:focus {
+  background: var(--nav-link-active);
+  color: #fff;
+}
+
+.home-main {
+  padding: 1rem;
+}
+.featured-car {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--section-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.car-info {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.car-title {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.car-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+.btn-own {
+  display: inline-block;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.btn-own:hover,
+.btn-own:focus {
+  background: #0097a7;
+}
+.car-image img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.home-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.upgrades {
+  margin-bottom: 1.5rem;
+}
+.upgrades h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.upgrades-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.upgrade-item {
+  background: var(--upgrade-bg);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  text-align: center;
+}
+.upgrade-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.3rem;
+}
+.upgrade-link {
+  display: block;
+  color: #222;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.reviews h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.reviews-list {
+  padding-left: 1.2rem;
+  font-size: 1rem;
+}
+
+footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: left;
+  padding: 1rem 1rem 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-top: 1px solid #eee;
+}
+.copyright {
+  margin: 0;
+}
+
+@media screen and (min-width: 900px) {
+  .wrapper {
+    max-width: 900px;
+    margin: 2rem auto;
+    box-shadow: 0 0 0 8px #00bcd4, 0 0 0 16px #fff;
+    border-radius: 10px;
+    background: var(--primary-bg);
+  }
+  .site-header {
+    padding: 2rem 2rem 1rem 2rem;
+  }
+  .site-name a {
+    font-size: 2.5rem;
+  }
+  .account-link a {
+    font-size: 1.1rem;
+  }
+  .main-nav {
+    padding: 0.7rem 0;
+  }
+  .main-nav a {
+    font-size: 1.1rem;
+    padding: 0.7rem 2rem;
+  }
+  .home-main {
+    padding: 2rem;
+  }
+  .featured-car {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  .car-info {
+    flex: 1 1 50%;
+    text-align: left;
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
+  .car-title {
+    font-size: 2rem;
+  }
+  .car-features {
+    font-size: 1.1rem;
+  }
+  .btn-own {
+    font-size: 1.1rem;
+    padding: 0.7rem 2rem;
+  }
+  .car-image {
+    flex: 1 1 50%;
+    text-align: right;
+  }
+  .car-image img {
+    max-width: 400px;
+  }
+  .home-sections {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .upgrades, .reviews {
+    flex: 1 1 50%;
+    margin-bottom: 0;
+  }
+  .upgrades-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .upgrade-item img {
+    width: 80px;
+    height: 80px;
+  }
+  .reviews-list {
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+  }
+  .upgrades h2, .reviews h2 {
+    font-size: 1.4rem;
+  }
+  footer {
+    padding: 1.5rem 2rem 1rem 2rem;
+    font-size: 1rem;
+  }
 }
