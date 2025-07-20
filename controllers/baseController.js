@@ -1,9 +1,28 @@
 const utilities = require("../utilities/")
-const baseController = {}
 
-baseController.buildHome = async function(req, res){
-  const nav = await utilities.getNav()
-  res.render("index", {title: "Home", nav})
+/* ***************************
+ *  Build home view
+ * ************************** */
+async function buildHome(req, res, next) {
+  try {
+    let nav = await utilities.getNav()
+    res.render("index", { title: "Home", nav })
+  } catch (error) {
+    console.error('Error in buildHome:', error)
+    next(error)
+  }
 }
 
-module.exports = baseController
+/* ***************************
+ *  Intentional error for testing
+ * ************************** */
+async function triggerError(req, res, next) {
+  try {
+    throw new Error("Intentional error for testing")
+  } catch (error) {
+    console.error('Intentional error triggered:', error)
+    next(error)
+  }
+}
+
+module.exports = { buildHome, triggerError }

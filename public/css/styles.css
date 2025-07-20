@@ -193,6 +193,29 @@ footer {
   margin: 0;
 }
 
+/* Vehicle Detail Styles */
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+}
+.vehicle-info {
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .vehicle-detail {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .vehicle-image, .vehicle-info {
+    flex: 1;
+  }
+}
+
 @media screen and (min-width: 900px) {
   .wrapper {
     max-width: 900px;
