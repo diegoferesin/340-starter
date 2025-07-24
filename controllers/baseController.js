@@ -7,6 +7,7 @@ async function buildHome(req, res, next) {
   try {
     let nav = await utilities.getNav()
     res.render("index", { title: "Home", nav })
+    req.flash("notice", "This is a flash message.")
   } catch (error) {
     console.error('Error in buildHome:', error)
     next(error)
