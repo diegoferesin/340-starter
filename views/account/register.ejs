@@ -1,0 +1,90 @@
+<section class="register-section">
+  <h1><%= title %></h1>
+  <%- messages() %>
+  
+  <form class="register-form" action="/account/register" method="POST">
+    <div class="form-group">
+      <label for="account_firstname">First Name</label>
+      <input 
+        type="text" 
+        id="account_firstname" 
+        name="account_firstname" 
+        required 
+        autocomplete="given-name"
+        data-trail="account_firstname"
+      >
+    </div>
+    
+    <div class="form-group">
+      <label for="account_lastname">Last Name</label>
+      <input 
+        type="text" 
+        id="account_lastname" 
+        name="account_lastname" 
+        required 
+        autocomplete="family-name"
+        data-trail="account_lastname"
+      >
+    </div>
+    
+    <div class="form-group">
+      <label for="account_email">Email Address</label>
+      <input 
+        type="email" 
+        id="account_email" 
+        name="account_email" 
+        required 
+        autocomplete="email"
+        data-trail="account_email"
+      >
+    </div>
+    
+    <div class="form-group">
+      <label for="account_password">Password</label>
+      <div class="password-container">
+        <input 
+          type="password" 
+          id="account_password" 
+          name="account_password" 
+          required 
+          autocomplete="new-password"
+          data-trail="account_password"
+          minlength="12"
+        >
+        <button type="button" class="password-toggle" onclick="togglePassword()">
+          <span class="toggle-icon">👁️</span>
+        </button>
+      </div>
+      <div class="password-requirements">
+        <p><strong>Password Requirements:</strong></p>
+        <ul>
+          <li>Minimum 12 characters in length</li>
+          <li>At least 1 capital letter</li>
+          <li>At least 1 number</li>
+          <li>At least 1 special character</li>
+        </ul>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn-register">Register</button>
+  </form>
+  
+  <div class="login-link">
+    <p>Already have an account? <a href="/account/login">Sign in here</a></p>
+  </div>
+</section>
+
+<script>
+function togglePassword() {
+  const passwordInput = document.getElementById('account_password');
+  const toggleIcon = document.querySelector('.toggle-icon');
+  
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    toggleIcon.textContent = '🙈';
+  } else {
+    passwordInput.type = 'password';
+    toggleIcon.textContent = '��️';
+  }
+}
+</script> 
