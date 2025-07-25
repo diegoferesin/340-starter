@@ -508,3 +508,26 @@ footer {
     padding: 2.5rem;
   }
 }
+
+/* Form Validation Styles */
+input:required:invalid, input:focus:invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+input:required:valid {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Password field specific validation */
+input[type="password"]:required:invalid, 
+input[type="password"]:focus:invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+input[type="password"]:required:valid {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
