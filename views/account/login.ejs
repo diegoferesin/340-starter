@@ -2,7 +2,15 @@
   <h1><%= title %></h1>
   <%- messages() %>
   
-  <form class="login-form" action="/account/login" method="POST">
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <%  }) %>
+    </ul>
+  <% } %>
+  
+  <form id="loginForm" action="/account/login" method="post">
     <div class="form-group">
       <label for="account_email">Email Address</label>
       <input 
@@ -11,6 +19,7 @@
         name="account_email" 
         required 
         autocomplete="email"
+        value="<%= locals.account_email %>"
       >
     </div>
     
@@ -22,17 +31,7 @@
         name="account_password" 
         required 
         autocomplete="current-password"
-        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
       >
-      <div class="password-requirements">
-        <p><strong>Password Requirements:</strong></p>
-        <ul>
-          <li>Minimum 12 characters in length</li>
-          <li>At least 1 capital letter</li>
-          <li>At least 1 number</li>
-          <li>At least 1 special character</li>
-        </ul>
-      </div>
     </div>
     
     <button type="submit" class="btn-login">Sign In</button>
