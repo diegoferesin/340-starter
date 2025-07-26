@@ -1,0 +1,31 @@
+<section class="add-classification-section">
+  <h1>Add New Classification</h1>
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <form id="addClassificationForm" action="/inv/add-classification" method="post">
+    <div class="form-group">
+      <label for="classification_name">Classification Name</label>
+      <input 
+        type="text" 
+        id="classification_name" 
+        name="classification_name" 
+        required 
+        pattern="^[A-Za-z0-9]+$"
+        title="No spaces or special characters allowed. Letters and numbers only."
+        value="<%= locals.classification_name %>"
+        autocomplete="off"
+      >
+      <small>No spaces or special characters allowed. Letters and numbers only.</small>
+    </div>
+    <button type="submit" class="btn">Add Classification</button>
+  </form>
+  <div class="management-link">
+    <a href="/inv/">Back to Inventory Management</a>
+  </div>
+</section> 
