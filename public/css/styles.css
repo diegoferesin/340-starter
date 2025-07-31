@@ -342,6 +342,8 @@ footer {
   border-radius: var(--border-radius);
   font-size: 1rem;
   transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
@@ -420,6 +422,12 @@ footer {
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.password-container input {
+  padding-right: 4rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .password-toggle {
