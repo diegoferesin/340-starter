@@ -16,6 +16,9 @@ router.get("/add-classification", invController.buildAddClassification)
 // Route to build add-inventory view
 router.get("/add-inventory", invController.buildAddInventory)
 
+// Route to build edit inventory view
+router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEditInventory))
+
 // Route to get inventory data as JSON
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
