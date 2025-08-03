@@ -38,4 +38,12 @@ router.post(
   invController.addInventory
 )
 
+// Route to process update inventory form
+router.post(
+  "/update",
+  regValidate.inventoryRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
 module.exports = router;
