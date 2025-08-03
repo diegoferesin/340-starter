@@ -123,4 +123,133 @@ async function buildAccountManagement(req, res, next) {
   })
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }
+/* ****************************************
+*  Deliver account management view
+* *************************************** */
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/management", {
+    title: "Account Management",
+    nav,
+    errors: null
+  })
+}
+
+/* ****************************************
+*  Deliver account update view
+* *************************************** */
+async function buildUpdateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const account_id = parseInt(req.params.account_id)
+  const accountData = await accountModel.getAccountById(account_id)
+  
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    account_id: accountData.account_id,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email
+  })
+}
+
+/* ****************************************
+*  Process account update
+* *************************************** */
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, account_firstname, account_lastname, account_email } = req.body
+  
+  const updateResult = await accountModel.updateAccount(
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+  )
+  
+  if (updateResult) {
+    req.flash("notice", "Account information updated successfully.")
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the account update failed.")
+    res.redirect(`/account/update/${account_id}`)
+  }
+}
+
+/* ****************************************
+*  Process password update
+* *************************************** */
+async function updatePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, account_password } = req.body
+  
+  // Hash the password before storing
+  let hashedPassword
+  try {
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the password update.')
+    res.redirect(`/account/update/${account_id}`)
+    return
+  }
+  
+  const updateResult = await accountModel.updatePassword(account_id, hashedPassword)
+  
+  if (updateResult) {
+    req.flash("notice", "Password updated successfully.")
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the password update failed.")
+    res.redirect(`/account/update/${account_id}`)
+  }
+}
+
+/* ****************************************
+*  Process password update
+* *************************************** */
+async function updatePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, account_password } = req.body
+  
+  // Hash the password before storing
+  let hashedPassword
+  try {
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the password update.')
+    res.redirect(`/account/update/${account_id}`)
+    return
+  }
+  
+  const updateResult = await accountModel.updatePassword(account_id, hashedPassword)
+  
+  if (updateResult) {
+    req.flash("notice", "Password updated successfully.")
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the password update failed.")
+    res.redirect(`/account/update/${account_id}`)
+  }
+}
+
+/* ****************************************
+*  Process logout request
+* *************************************** */
+async function accountLogout(req, res) {
+  res.clearCookie("jwt")
+  req.flash("notice", "You have been logged out.")
+  res.redirect("/")
+}
+
+module.exports = { 
+  buildLogin, 
+  buildRegister, 
+  registerAccount, 
+  accountLogin, 
+  buildAccountManagement,
+  buildUpdateAccount,
+  updateAccount,
+  updatePassword,
+  accountLogout
+}
