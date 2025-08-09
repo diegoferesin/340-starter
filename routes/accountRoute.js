@@ -3,6 +3,7 @@ const express = require("express")
 const router = new express.Router() 
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController.js")
+const favoritesController = require("../controllers/favoritesController.js")
 const regValidate = require('../utilities/account-validation')
 
 // Route to build login view
@@ -16,6 +17,9 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 
 // Route to build account update view
 router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdateAccount))
+
+// Favorites: list
+router.get("/favorites", utilities.checkLogin, utilities.handleErrors(favoritesController.buildFavorites))
 
 // Route to process logout
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
@@ -53,5 +57,10 @@ router.post(
   regValidate.checkPasswordUpdateData,
   utilities.handleErrors(accountController.updatePassword)
 )
+
+// Favorites: add
+router.post("/favorites/:inv_id", utilities.checkLogin, utilities.handleErrors(favoritesController.addFavorite))
+// Favorites: remove
+router.post("/favorites/:inv_id/delete", utilities.checkLogin, utilities.handleErrors(favoritesController.removeFavorite))
 
 module.exports = router

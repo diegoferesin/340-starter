@@ -1,0 +1,39 @@
+<section class="favorites-section">
+  <h1><%= title %></h1>
+  <%- messages() %>
+
+  <% if (!favorites || favorites.length === 0) { %>
+    <p>You have no saved vehicles yet.</p>
+  <% } else { %>
+    <table class="favorites-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Vehicle</th>
+          <th>Year</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% favorites.forEach(item => { %>
+          <tr>
+            <td><a href="/inv/detail/<%= item.inv_id %>"><img src="<%= item.inv_thumbnail %>" alt="<%= item.inv_make %> <%= item.inv_model %>" style="width: 100px"></a></td>
+            <td><a href="/inv/detail/<%= item.inv_id %>"><%= item.inv_make %> <%= item.inv_model %></a></td>
+            <td><%= item.inv_year %></td>
+            <td>$<%= new Intl.NumberFormat('en-US').format(item.inv_price) %></td>
+            <td>
+              <form action="/account/favorites/<%= item.inv_id %>/delete" method="post">
+                <button type="submit" class="btn btn-danger">Remove</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <p><a href="/account/">Back to Account Management</a></p>
+</section>
+
+
