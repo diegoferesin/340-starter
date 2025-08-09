@@ -74,6 +74,8 @@ Added protected routes (behind `utilities.checkLogin`) to handle listing, adding
 
 ### Testing Steps
 1. Apply DB changes (run the app using the updated `rebuild.sql` or execute the CREATE TABLE statements).
-2. Log in as any account.
+2. Log in as any account. If you use the 'manager@340.edu' user, you will find some saved favorites items. You can use any on https://byui-cse.github.io/cse340-ww-content/views/jwt-authorize.html and test the flow from start to end. 
 3. Open a vehicle detail page and click “Save to Favorites”.
 4. Visit `/account/favorites` to verify the saved item appears; remove it to test deletion.
+
+You can see every change in this commit: https://github.com/diegoferesin/340-starter/commit/acf24a4da7ddd95231a08cbead7e4bf53dde7982
